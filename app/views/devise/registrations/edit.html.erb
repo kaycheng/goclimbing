@@ -1,15 +1,20 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<h2>修改個人資料</h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
 
   <div class="field">
-    <%= f.label :username %><br />
-    <%= f.email_field :username, autofocus: true %>
+    <%= f.label :username, "使用者名稱" %><br />
+    <%= f.text_field :username, autofocus: true %>
   </div>
 
   <div class="field">
-    <%= f.label :email %><br />
+    <%= f.label :intro, "自我簡介" %><br />
+    <%= f.text_area :intro, rows: "6" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :email, "Email" %><br />
     <%= f.email_field :email, autocomplete: "email" %>
   </div>
 
@@ -18,31 +23,22 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
+    <%= f.label :password, "密碼" %> <i>(假如你不想更改，則可不用填寫)</i><br />
     <%= f.password_field :password, autocomplete: "new-password" %>
     <% if @minimum_password_length %>
       <br />
-      <em><%= @minimum_password_length %> characters minimum</em>
+      <em>最少<%= @minimum_password_length %>個字母或數字</em>
     <% end %>
   </div>
 
   <div class="field">
-    <%= f.label :password_confirmation %><br />
+    <%= f.label :password_confirmation, "確認密碼" %><br />
     <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
   </div>
 
-  <div class="field">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, autocomplete: "current-password" %>
-  </div>
-
   <div class="actions">
-    <%= f.submit "Update" %>
+    <%= f.submit "確定送出" %>
   </div>
 <% end %>
 
-<h3>Cancel my account</h3>
-
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
-
-<%= link_to "Back", :back %>
+<%= link_to "回到上一頁", :back %>
