@@ -9,6 +9,12 @@
   </div>
 
   <div class="field">
+    <%= avatar(current_user, 100) %>
+    <%= f.label :avatar, "大頭貼" %><br />
+    <%= f.file_field :avatar %>
+  </div>
+
+  <div class="field">
     <%= f.label :intro, "自我簡介" %><br />
     <%= f.text_area :intro, rows: "6" %>
   </div>
