@@ -13,6 +13,8 @@
   <body>
     <%= render "shared/navbar" %>
     <%= render "shared/flash" if notice %>
-    <%= yield %>
+    <div class="container-fluid">
+      <%= yield %>
+    </div>
   </body>
 </html>
