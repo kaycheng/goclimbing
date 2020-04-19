@@ -8,6 +8,7 @@ class User < ApplicationRecord
   validates :username, presence: true
   validates_uniqueness_of :username
 
+  # relationships
   has_one_attached :avatar
-
+  has_many :events, dependent: :destroy
 end
