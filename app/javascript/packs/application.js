@@ -18,3 +18,4 @@ require("tempusdominus-bootstrap-4")
 // const imagePath = (name) => images(name, true)
 import "../stylesheets/application"
 import "./bootstrap_custom.js"
+import "@fortawesome/fontawesome-free/js/all";
