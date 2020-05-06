@@ -1,0 +1,21 @@
+<%= form_with model: event do |f| %>
+  <%= f.label :title, "標題" %>
+  <%= f.text_field :title %>
+
+  <%= f.label :date, "日期" %>
+  <%= f.text_field :date %>
+
+  <%= f.label :location, "地點" %>
+  <%= f.text_field :location %>
+
+  <%= f.label :gather_location, "集合地點" %>
+  <%= f.text_field :gather_location %>
+
+  <%= f.label :note, "提醒事項" %>
+  <%= f.text_area :note %>
+
+  <%= f.label :content, "提案內容" %>
+  <%= f.text_area :content, rows: "10" %>
+
+  <%= f.submit (event.title? ? "修改" : "建立") %>
+<% end %>

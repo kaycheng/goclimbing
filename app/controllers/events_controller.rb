@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
   before_action :authenticate_user!, except: :index
-  before_action :find_event, only: [:edit, :show, :update, :destory] 
+  before_action :find_event, only: [:edit, :show, :update, :destroy] 
 
   def index
     @events = current_user.events.order(updated_at: :desc)
@@ -28,7 +28,7 @@ class EventsController < ApplicationController
   end
 
   def destroy
-    if @event.delete
+    if @event.destroy
       redirect_to events_path, notice: "已刪除"
     end
   end
@@ -40,6 +40,6 @@ class EventsController < ApplicationController
   end
 
   def find_event
-    @event = current_user.event.find(params[:id])
+    @event = current_user.events.find(params[:id])
   end
 end

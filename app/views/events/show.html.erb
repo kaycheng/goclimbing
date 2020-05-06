@@ -1,0 +1,10 @@
+<h2><%= @event.title %></h2>
+<p>日期：<%= @event.date %></p>
+<p>目標山：<%= @event.location %></p>
+<p>集合地點：<%= @event.gather_location %></p>
+<p>內容：<%= @event.content %></p>
+<p>提醒事項：<%= @event.note %></p>
+
+<%= link_to "修改", edit_event_path(@event) %> |
+<%= link_to "刪除", event_path(@event), method: :delete,
+    data: { confirm: "確定刪除？" } %>

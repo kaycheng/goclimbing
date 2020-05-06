@@ -1,8 +1,16 @@
 <h1>Event pages</h1>
 
-<%= link_to "new", new_event_path %>
+<%= link_to "新事件", new_event_path, class: "btn btn-secondary" %>
+
 
 <% @events.each do |event| %>
-  <%= event.title %>
-  <%= event.content %>
+  <%= link_to event_path(event) do %>
+    <%= event.user.username %>
+    <%= event.title %>
+    <%= event.date %>
+    <%= event.location %>
+    <%= event.gather_location %>
+    <%= simple_format(event.content).truncate(150) %>
+    <%= event.note %>
+  <% end %>
 <% end %>
