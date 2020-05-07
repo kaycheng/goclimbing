@@ -13,6 +13,12 @@ class EventsController < ApplicationController
       render new_event_path, notice: "請重新建立"
     end
   end
+
+  def edit
+    unless current_user == @event.user
+      redirect_to root_path, notice: "你沒有權限更改！"
+    end
+  end
   
   def update
     if @event.update(event_params)
@@ -35,6 +41,6 @@ class EventsController < ApplicationController
   end
 
   def find_event
-    @event = current_user.events.find(params[:id])
+    @event = Event.find(params[:id])
   end
 end
