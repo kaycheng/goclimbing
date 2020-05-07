@@ -7,6 +7,12 @@ Rails.application.routes.draw do
 
   resources :events
 
+  resources :user, only: [] do
+    member do
+      post :follow
+    end
+  end
+
   # /@username
   get '@:username', to: 'welcome#user', as: 'user_page'
 
