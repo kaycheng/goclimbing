@@ -4,6 +4,7 @@
     <%= avatar(@user, 150) %>
     <h2><%= @user.username %></h2>
     <p><%= simple_format(@user.intro) %></p>
+    <%= link_to "新事件", new_event_path, class: "btn btn-secondary" %>
   </div>
   <div class="clearfix"></div>
 </div>
@@ -13,8 +14,28 @@
   </div>
 </div>  
 
-<!-- 自己開的團/參加的團/追蹤的團 -->
+
 <div class="row justify-content-md-center">
-  <div class="col"></div>
-  <div class="col"></div>
+  <!-- 自己開的團 -->
+  <div class="col">
+    <% @events.each do |event| %>
+      <%= link_to event_path(event) do %>
+        <%= event.user.username %>
+        <%= event.title %>
+        <%= event.date %>
+        <%= event.location %>
+        <%= event.gather_location %>
+        <%= simple_format(event.content).truncate(150) %>
+        <%= event.note %>
+      <% end %>
+    <% end %>
+  </div>
+
+  <div class="row">
+    <!-- 參加的團 -->
+    <div class="col"></div>
+
+    <!-- 追蹤的團 -->
+    <div class="col"></div>
+  </div>
 </div>

@@ -1,10 +1,5 @@
 class EventsController < ApplicationController
-  before_action :authenticate_user!, except: :index
   before_action :find_event, only: [:edit, :show, :update, :destroy] 
-
-  def index
-    @events = current_user.events.order(updated_at: :desc)
-  end
 
   def new
     @event = current_user.events.new
@@ -13,7 +8,7 @@ class EventsController < ApplicationController
   def create
     @event = current_user.events.new(event_params)
     if @event.save
-      redirect_to events_path, notice: "已建立新團"
+      redirect_to user_page_path(current_user.username), notice: "已建立新團"
     else
       render new_event_path, notice: "請重新建立"
     end
@@ -21,7 +16,7 @@ class EventsController < ApplicationController
   
   def update
     if @event.update(event_params)
-      redirect_to event_path(@event), notice: "已更新"
+      redirect_to user_page_path(current_user.username), notice: "已更新"
     else
       render edit_event_path(@event), notice: "請重新編輯"
     end
@@ -29,7 +24,7 @@ class EventsController < ApplicationController
 
   def destroy
     if @event.destroy
-      redirect_to events_path, notice: "已刪除"
+      redirect_to user_page_path(current_user.username), notice: "已刪除"
     end
   end
 
