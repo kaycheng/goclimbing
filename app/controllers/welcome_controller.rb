@@ -1,6 +1,7 @@
 class WelcomeController < ApplicationController
 
   def index
+    @events = Event.order(updated_at: :desc).includes(:user)
   end
   
   def user
