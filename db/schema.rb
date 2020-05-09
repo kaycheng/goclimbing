@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_19_083502) do
+ActiveRecord::Schema.define(version: 2020_05_07_152446) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -46,6 +46,15 @@ ActiveRecord::Schema.define(version: 2020_04_19_083502) do
     t.index ["user_id"], name: "index_events_on_user_id"
   end
 
+  create_table "follows", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "following_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["following_id"], name: "index_follows_on_following_id"
+    t.index ["user_id"], name: "index_follows_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -62,4 +71,5 @@ ActiveRecord::Schema.define(version: 2020_04_19_083502) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "events", "users"
+  add_foreign_key "follows", "users"
 end

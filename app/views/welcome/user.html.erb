@@ -4,9 +4,12 @@
     <%= avatar(@user, 150) %>
     <h2 class="profile" data-controller="user">
       <%= @user.username %>
-      <%= link_to "Follow", "#", class: "btn btn-secondary follow-button",
-                  data: { action: "user#follow",
-                          user: @user, target: "user.followButton"} %>
+      <%= link_to "#", class: "btn btn-secondary follow-button",
+                        data: { action: "user#follow",
+                                user: @user.id, 
+                                target: "user.followButton" } do %>
+        <%= (user_signed_in? && current_user.follow?(@user)) ? 'Followed' : 'Follow' %>
+      <% end %>
     </h2>
     <p><%= simple_format(@user.intro) %></p>
     <% if current_user == @user %>

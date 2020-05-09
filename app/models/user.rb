@@ -11,4 +11,20 @@ class User < ApplicationRecord
   # relationships
   has_one_attached :avatar
   has_many :events, dependent: :destroy
+  has_many :follows
+
+  # instance methods
+  def follow?(user)
+    follows.exists?(following: user)
+  end
+
+  def follow!(user)
+    if follow?(user)
+      follows.find_by(following: user).destroy
+      return 'Follow'
+    else
+      follows.create(following: user)
+      return 'Followed'
+    end
+  end
 end

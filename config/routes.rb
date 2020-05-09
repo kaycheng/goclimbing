@@ -7,7 +7,8 @@ Rails.application.routes.draw do
 
   resources :events
 
-  resources :user, only: [] do
+  # users/:id/follow
+  resources :users, only: [] do
     member do
       post :follow
     end
