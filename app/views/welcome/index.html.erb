@@ -2,15 +2,18 @@
 
 <!-- 所有的events -->
 <% @events.each do |event| %>
-  <%= link_to event_path(event) do %>
-    <%= event.user.username %>
-    <%= event.title %>
-    <%= event.date %>
-    <%= event.location %>
-    <%= event.gather_location %>
-    <%= simple_format(event.content).truncate(150) %>
-    <%= event.note %>
-  <% end %>
+  <div class="content">
+    <%= link_to event_path(event) do %>
+      <%= event.user.username %>
+      <%= event.title %>
+      <%= event.date %>
+      <%= event.location %>
+      <%= event.gather_location %>
+      <%= simple_format(event.content).truncate(150) %>
+      <%= event.note %>
+    <% end %>
+    <%= render partial: "shared/participate", locals: { event: event } %>
+  </div>
 <% end %>
 
 <!-- 景點排名 -->
