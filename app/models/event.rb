@@ -7,7 +7,7 @@ class Event < ApplicationRecord
   # Relationships
   belongs_to :user
   has_many :participates, dependent: :destroy
-  has_many :participated_user, through: :participates, source: :user
+  has_many :participated_users, through: :participates, source: :user
 
   # AASM
   aasm(column: 'status', no_direct_assignment: true) do
@@ -21,5 +21,9 @@ class Event < ApplicationRecord
     event :unpublish do
       transitions from: :published, to: :draft
     end
+  end
+
+  def is_participated?(user)
+    self.participated_users.include?(user)
   end
 end

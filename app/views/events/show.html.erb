@@ -6,8 +6,18 @@
 <p>內容：<%= @event.content %></p>
 <p>提醒事項：<%= @event.note %></p>
 
-<% if current_user == @event.user %>
-  <%= link_to "修改", edit_event_path(@event) %> |
-  <%= link_to "刪除", event_path(@event), method: :delete,
-      data: { confirm: "確定刪除？" } %>
+<% if user_signed_in? %>
+  <% if current_user == @event.user %>
+    <%= link_to "修改", edit_event_path(@event) %> |
+    <%= link_to "刪除", event_path(@event), method: :delete,
+        data: { confirm: "確定刪除？" } %>
+  <% else %>
+    <% if @event.is_participated?(current_user) %>
+      <%= link_to "不參加", unparticipated_event_path(@event), method: :post,
+                           class: "btn btn-primary" %>
+    <% else %>
+      <%= link_to "參加", participated_event_path(@event), method: :post,
+                         class: "btn btn-info" %>
+    <% end %>
+  <% end %>
 <% end %>

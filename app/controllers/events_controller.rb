@@ -1,5 +1,5 @@
 class EventsController < ApplicationController
-  before_action :find_event, only: [:edit, :show, :update, :destroy] 
+  before_action :find_event, except: [:new, :create]
 
   def new
     @event = current_user.events.new
@@ -47,6 +47,17 @@ class EventsController < ApplicationController
     if @event.destroy
       redirect_to user_page_path(current_user.username), notice: "已刪除"
     end
+  end
+
+  def participated
+    @event.participates.create!(user: current_user)
+    redirect_back(fallback_location: root_path)
+  end
+
+  def unparticipated
+    participated = Participate.where(event: @event, user: current_user)
+    participated.destroy_all
+    redirect_back(fallback_location: root_path)
   end
 
   private
