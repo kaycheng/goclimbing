@@ -1,51 +1,79 @@
-<!-- 個人資料/ -->
-<div class="row justify-content-md-center">
-  <div class="col-lg-6 col-md-6 col-sm-10 user-content">
-    <%= avatar(@user, 150) %>
-    <h2 class="profile" data-controller="user">
-      <%= @user.username %>
-      <%= link_to "#", class: "btn btn-secondary follow-button",
-                        data: { action: "user#follow",
-                                user: @user.id, 
-                                target: "user.followButton" } do %>
-        <%= (user_signed_in? && current_user.follow?(@user)) ? 'Followed' : 'Follow' %>
+<!-- 個人資料 -->
+<div class="user-content">
+  <div class="row justify-content-md-center">
+    <div class="col-lg-6 col-md-6 col-sm-10">
+      <%= avatar(@user, 150) %>
+      <h2 class="profile" data-controller="user">
+        <%= @user.username %>
+        <%= link_to "#", class: "btn btn-secondary follow-button",
+                          data: { action: "user#follow",
+                                  user: @user.id, 
+                                  target: "user.followButton" } do %>
+          <%= (user_signed_in? && current_user.follow?(@user)) ? 'Followed' : 'Follow' %>
+        <% end %>
+      </h2>
+      <p><%= simple_format(@user.intro) %></p>
+      <% if current_user == @user %>
+        <%= link_to "新事件", new_event_path, class: "btn btn-secondary" %>
       <% end %>
-    </h2>
-    <p><%= simple_format(@user.intro) %></p>
-    <% if current_user == @user %>
-      <%= link_to "新事件", new_event_path, class: "btn btn-secondary" %>
-    <% end %>
+      </div>
+    <div class="clearfix"></div>
+  </div>
+  <div class="row justify-content-md-center">
+    <div class="col-lg-6 col-md-6 col-sm-10">
+      <hr>
     </div>
-  <div class="clearfix"></div>
+  </div>  
 </div>
-<div class="row justify-content-md-center">
-  <div class="col-lg-6 col-md-6 col-sm-10">
-    <hr>
-  </div>
-</div>  
 
-
-<div class="row justify-content-md-center">
-  <!-- 自己開的團 -->
-  <div class="col">
-    <% @events.each do |event| %>
-      <%= link_to event_path(event) do %>
-        <%= event.user.username %>
-        <%= event.title %>
-        <%= event.date %>
-        <%= event.location %>
-        <%= event.gather_location %>
-        <%= simple_format(event.content).truncate(150) %>
-        <%= event.note %>
-      <% end %>
+<!-- User's Events -->
+<div class="user-events">
+  <div class="row justify-content-md-center">
+    <% if user_signed_in? && current_user == @user %>
+      <div class="col-lg-10 col-md-10 col-sm-12">
+        <!-- 自己開的團 -->
+        <div class="row">
+          <div class="col-lg-8 col-md-8 col-sm-12">
+            <% @events.each do |event| %>
+              <%= link_to event_path(event) do %>
+                <%= event.user.username %>
+                <%= event.title %>
+                <%= event.date %>
+                <%= event.location %>
+                <%= event.gather_location %>
+                <%= simple_format(event.content).truncate(150) %>
+                <%= event.note %>
+              <% end %>
+            <% end %>
+          </div>
+          <hr>
+          <div class="col-lg-4 col-md-4 col-sm-12">
+            <!-- 參加的團 -->
+            <div class="col-12">
+      
+            </div>
+            <hr>
+            <!-- 已參加過的團 -->
+            <div class="col-12">
+      
+            </div>
+          </div>
+        </div>
+      </div>
+    <% else %>
+      <div class="col-lg-10 col-md-10 col-sm-12">
+        <% @events.each do |event| %>
+          <%= link_to event_path(event) do %>
+            <%= event.user.username %>
+            <%= event.title %>
+            <%= event.date %>
+            <%= event.location %>
+            <%= event.gather_location %>
+            <%= simple_format(event.content).truncate(150) %>
+            <%= event.note %>
+          <% end %>
+        <% end %>
+      </div>
     <% end %>
-  </div>
-
-  <div class="row">
-    <!-- 參加的團 -->
-    <div class="col"></div>
-
-    <!-- 追蹤的團 -->
-    <div class="col"></div>
   </div>
 </div>

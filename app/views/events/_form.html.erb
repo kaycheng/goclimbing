@@ -17,5 +17,7 @@
   <%= f.label :content, "提案內容" %>
   <%= f.text_area :content, rows: "10" %>
 
-  <%= f.submit (event.title? ? "修改" : "建立") %>
+  <%= f.submit :Draft, name: "save_as_draft", class: "btn btn-info" %>
+  <%= f.submit :Publish, name: "publish", class: "btn btn-success" if event.may_publish? %>
+  <%= f.submit :Unpublish, name: "unpublish", class: "btn btn-danger" if event.may_unpublish? %>
 <% end %>

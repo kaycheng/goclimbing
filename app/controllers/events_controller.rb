@@ -7,8 +7,14 @@ class EventsController < ApplicationController
 
   def create
     @event = current_user.events.new(event_params)
+    @event.publish! if params[:publish]
+
     if @event.save
-      redirect_to user_page_path(current_user.username), notice: "已建立新團"
+      if params[:publish]
+        redirect_to user_page_path(current_user.username), notice: "已建立新團"
+      else
+        redirect_to edit_event_path(@event), notice: "已儲存"
+      end
     else
       render new_event_path, notice: "請重新建立"
     end
@@ -22,7 +28,16 @@ class EventsController < ApplicationController
   
   def update
     if @event.update(event_params)
-      redirect_to user_page_path(current_user.username), notice: "已更新"
+      case
+      when params[:publish]
+        @event.publish!
+        redirect_to user_page_path(current_user.username), notice: "已發布"
+      when params[:unpublish]
+        @event.unpublish!
+        redirect_to user_page_path(current_user.username), notice: "已下架"
+      else
+        redirect_to user_page_path(current_user.username), notice: "已儲存"
+      end
     else
       render edit_event_path(@event), notice: "請重新編輯"
     end
