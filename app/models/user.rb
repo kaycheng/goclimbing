@@ -11,7 +11,9 @@ class User < ApplicationRecord
   # relationships
   has_one_attached :avatar
   has_many :events, dependent: :destroy
-  has_many :follows
+  has_many :follows, dependent: :destroy
+  has_many :participates, dependent: :destroy
+  has_many :participated_events, through: :participates, source: :event
 
   # instance methods
   def follow?(user)

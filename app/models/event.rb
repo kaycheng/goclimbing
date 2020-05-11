@@ -1,9 +1,15 @@
 class Event < ApplicationRecord
   include AASM
-
-  belongs_to :user
+  
+  # Validations
   validates :title, presence: true
+  
+  # Relationships
+  belongs_to :user
+  has_many :participates, dependent: :destroy
+  has_many :participated_user, through: :participates, source: :user
 
+  # AASM
   aasm(column: 'status', no_direct_assignment: true) do
     state :draft, initial: true
     state :published
