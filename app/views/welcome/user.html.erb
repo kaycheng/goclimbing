@@ -50,12 +50,16 @@
           <div class="col-lg-4 col-md-4 col-sm-12">
             <!-- 參加的團 -->
             <div class="col-12">
-              
+              <% @participated_events.each do |event| %>
+                <%= event.title %>
+              <% end %>
             </div>
             <hr>
             <!-- 已參加過的團 -->
             <div class="col-12">
-              
+              <% @overdue_participated_events.each do |event| %>
+                <%= event.title %>
+              <% end %>
             </div>
           </div>
         </div>
