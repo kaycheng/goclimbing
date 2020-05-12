@@ -26,4 +26,6 @@ class Event < ApplicationRecord
   def is_participated?(user)
     self.participated_users.include?(user)
   end
+
+  scope :overdue, -> { where(['date > ?', Time.now])}
 end
