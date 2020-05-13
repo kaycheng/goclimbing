@@ -1,7 +1,11 @@
 class WelcomeController < ApplicationController
 
   def index
-    @events = Event.published.not_overdue.order(date: :desc).includes(:user)
+    if params[:search]
+      @events = Event.published.not_overdue.where('title LIKE ? OR location LIKE ?', "%#{params[:search]}%", "%#{params[:search]}%").includes(:user)
+    else
+      @events = Event.published.not_overdue.order(date: :desc).includes(:user)
+    end
   end
   
   def user
