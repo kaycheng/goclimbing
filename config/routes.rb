@@ -11,6 +11,11 @@ Rails.application.routes.draw do
       post :participated
       post :unparticipated
     end
+
+    collection do
+      get :draft
+      get :public
+    end
   end
 
   # users/:id/follow

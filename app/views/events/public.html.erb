@@ -1,0 +1,21 @@
+<h2>
+  Your Events
+  <span class="ml-auto">
+    <%= link_to "Create Event", new_event_path, class: "btn btn-secondary btn-large" %>
+  </span>
+</h2>
+<hr>
+
+<%= link_to draft_events_path do %>
+  Draft <%= @draft_count %>
+<% end %>
+|
+<%= link_to public_events_path do %>
+  Public <%= @public_count %>
+<% end %>
+
+<% @public_events.each do |event| %>
+<p><%= event.title %></p>
+<p><%= event.user.username %></p>
+<p><%= event.status %></p>
+<% end %>

@@ -23,6 +23,7 @@
             <% end %>
           </a>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+            <%= link_to "Events", draft_events_path, class: "dropdown-item" %>
             <%= link_to "Profile", user_page_path(current_user.username), class: "dropdown-item" %>
             <%= link_to "Setting", edit_user_registration_path(current_user), class: "dropdown-item" %>
             <div class="dropdown-divider"></div>

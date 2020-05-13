@@ -13,10 +13,8 @@
         <% end %>
       </h2>
       <p><%= simple_format(@user.intro) %></p>
-      <% if current_user == @user %>
-        <%= link_to "新事件", new_event_path, class: "btn btn-secondary" %>
-      <% end %>
-      </div>
+      
+    </div>
     <div class="clearfix"></div>
   </div>
   <div class="row justify-content-md-center">

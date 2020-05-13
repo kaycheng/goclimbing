@@ -1,6 +1,9 @@
 class EventsController < ApplicationController
-  before_action :find_event, except: [:new, :create]
+  before_action :authenticate_user!
+  before_action :find_event, except: [:new, :create, :draft, :public]
+  before_action :count_events, only: [:draft, :public]
 
+  
   def new
     @event = current_user.events.new
   end
@@ -60,6 +63,15 @@ class EventsController < ApplicationController
     redirect_back(fallback_location: root_path)
   end
 
+  def draft
+    @draft_events = Event.where(status: "draft", user: current_user)
+  end
+
+  def public 
+    @public_events = Event.where(status: "published", user: current_user)
+  end
+
+
   private
 
   def event_params
@@ -68,5 +80,10 @@ class EventsController < ApplicationController
 
   def find_event
     @event = Event.find(params[:id])
+  end
+
+  def count_events
+    @draft_count = Event.where(status: "draft", user: current_user).count
+    @public_count = Event.where(status: "published", user: current_user).count
   end
 end
