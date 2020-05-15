@@ -15,6 +15,14 @@ class WelcomeController < ApplicationController
     @overdue_participated_events = @user.participated_events.published.overdue.order(date: :desc).includes(:user)
   end
 
+  def followers
+    @followers = @user.followers
+  end
+
+  def followings
+    @followings = @user.followings
+  end
+
   private
   def find_user
     @user = User.find_by(username: params[:username])

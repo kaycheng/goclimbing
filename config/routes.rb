@@ -18,17 +18,17 @@ Rails.application.routes.draw do
     end
   end
 
-  # users/:id/follow
+ 
   resources :users, only: [] do
     member do
+      # users/:id/follow
       post :follow
-
-      get :followers
-      get :followings
     end
   end
 
   # /@username
   get '@:username', to: 'welcome#user', as: 'user_page'
+  get '@:username/followers', to: 'welcome#followers', as: 'followers_user'
+  get '@:username/followings', to: 'welcome#followings', as: 'followings_user'
 
 end
