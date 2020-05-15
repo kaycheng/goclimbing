@@ -13,7 +13,11 @@
         <% end %>
       </h2>
       <p><%= simple_format(@user.intro) %></p>
-      
+      <p>
+        Events <b><%= @user.events.count %></b>
+        Followers <b><%= link_to @user.followers.size, followers_user_path(@user), class: "text-dark text-decoration-none" %></b>
+        Followings <b><%= link_to @user.followings.size, followings_user_path(@user), class: "text-dark text-decoration-none" %></b>
+      </p>
     </div>
     <div class="clearfix"></div>
   </div>

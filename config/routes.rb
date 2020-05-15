@@ -22,6 +22,9 @@ Rails.application.routes.draw do
   resources :users, only: [] do
     member do
       post :follow
+
+      get :followers
+      get :followings
     end
   end
 
