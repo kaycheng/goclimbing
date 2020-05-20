@@ -20,9 +20,14 @@
 <hr>
 
 <!-- Comments -->
-<div class="comment-form">
-  <%= form_with Model: Comment.new, url: event_comments_path(@event), remote: true do |f| %>
-    <%= f.text_area :content %>
-    <%= f.submit %>
-  <% end %>
+<div class="row justify-content-md-center">
+  <div class="col-6">
+    <section class="comments">
+      <h2>Comment</h2>
+      <%= render "comment_area", event: @event, comment: @comment %>
+      <section class="comment-list">
+        <%= render partial: "comment", collection: @comments %>
+      </section>
+    </section>
+  </div>
 </div>

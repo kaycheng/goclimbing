@@ -1,0 +1,8 @@
+<article class="comment">
+  <span class="profile avatar-50">
+    <%= link_to user_page_path(comment.user.username) do %>
+      <%= avatar(current_user, 50) %>
+    <% end %>
+    <%= simple_format(comment.content) %>
+  </span>
+</article>

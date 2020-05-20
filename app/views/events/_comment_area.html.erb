@@ -1,0 +1,12 @@
+<section class="comment-editor">
+  <% if user_signed_in? %>
+    <%= form_with model: comment, url: event_comments_path(event), class: "comment_form", remote: true do |f| %>
+    <div class="form-group">
+      <%= f.text_area :content, rows: 5, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.submit "Submit", class: "btn btn-info btn-block" %>
+    </div>
+    <% end %>
+  <% end %>
+</section>
