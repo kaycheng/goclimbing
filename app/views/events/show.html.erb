@@ -5,6 +5,7 @@
 <p>集合地點：<%= @event.gather_location %></p>
 <p>內容：<%= @event.content %></p>
 <p>提醒事項：<%= @event.note %></p>
+<p>Participates：<%= @event.participates.size %></p>
 
 
 <% if user_signed_in? && current_user == @event.user %>

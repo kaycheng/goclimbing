@@ -5,7 +5,8 @@ class WelcomeController < ApplicationController
     if params[:search]
       @events = Event.published.not_overdue.where('title LIKE ? OR location LIKE ?', "%#{params[:search]}%", "%#{params[:search]}%").includes(:user)
     else
-      @events = Event.published.not_overdue.order(date: :desc).includes(:user)
+      @newest_events = Event.published.not_overdue.order(created_at: :desc).includes(:user)
+      @papular_events = Event.published.not_overdue.order(participates_count: :desc).includes(:user).limit(5)
     end
   end
   

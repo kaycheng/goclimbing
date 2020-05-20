@@ -4,25 +4,31 @@
 <h1>Hi</h1>
 
 <!-- 所有的events -->
-<% @events.each do |event| %>
-  <% if event.date > Time.now %>
-    <div class="content">
-      <%= link_to event_path(event) do %>
-        <%= event.user.username %>
-        <%= event.title %>
-        <%= event.date %>
-        <%= event.location %>
-        <%= event.gather_location %>
-        <%= simple_format(event.content).truncate(150) %>
-        <%= event.note %>
-        次數： <%= event.event_count %>
-      <% end %>
-      
-      <%= render partial: "shared/participate", locals: { event: event } %>
-    </div>
-  <% end %>
+<% @newest_events.each do |event| %>
+  <div class="newest_content">
+    <%= link_to event_path(event) do %>
+      <%= event.user.username %>
+      <%= event.title %>
+      <%= event.date %>
+      <%= event.location %>
+      <%= event.gather_location %>
+      <%= simple_format(event.content).truncate(150) %>
+      <%= event.note %>
+      Participates：<%= event.participates.size %>
+    <% end %>
+    
+    <%= render partial: "shared/participate", locals: { event: event } %>
+  </div>
 <% end %>
 
 <!-- 景點排名 -->
 
 <!-- 最多人參加 -->
+<% @papular_events.each do |event| %>
+  <div class="papular-content">
+    <%= link_to event_path(event) do %>
+      <%= event.title %>
+      <%= event.participates.size %>
+    <% end %>
+  </div>
+<% end %>
