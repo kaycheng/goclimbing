@@ -15,6 +15,7 @@
         <%= event.gather_location %>
         <%= simple_format(event.content).truncate(150) %>
         <%= event.note %>
+        次數： <%= event.event_count %>
       <% end %>
       
       <%= render partial: "shared/participate", locals: { event: event } %>
