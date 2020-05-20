@@ -21,6 +21,8 @@ class User < ApplicationRecord
   has_many :participates, dependent: :destroy
   has_many :participated_events, through: :participates, source: :event
 
+  has_many :comments
+
   # instance methods
   def follow?(user)
     follows.exists?(following: user)

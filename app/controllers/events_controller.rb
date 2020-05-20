@@ -46,6 +46,10 @@ class EventsController < ApplicationController
     end
   end
 
+  def show
+    @comment = @event.comments.new
+  end
+
   def destroy
     if @event.destroy
       redirect_to user_page_path(current_user.username), notice: "已刪除"

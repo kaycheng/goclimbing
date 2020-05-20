@@ -1,4 +1,7 @@
-<h2><%= @event.title %></h2>
+<h2>
+  <%= @event.title %>
+  <%= render partial: "shared/participate", locals: { event: @event } %>
+</h2>
 <p>開團者：<%= link_to @event.user.username, user_page_path(@event.user.username) %></p>
 <p>日期：<%= @event.date %></p>
 <p>目標山：<%= @event.location %></p>
@@ -14,5 +17,12 @@
       data: { confirm: "確定刪除？" } %>
 <% end %>
 
-<%= render partial: "shared/participate", locals: { event: @event } %>
+<hr>
 
+<!-- Comments -->
+<div class="comment-form">
+  <%= form_with Model: Comment.new, url: event_comments_path(@event), remote: true do |f| %>
+    <%= f.text_area :content %>
+    <%= f.submit %>
+  <% end %>
+</div>

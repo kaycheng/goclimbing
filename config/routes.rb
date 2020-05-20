@@ -16,6 +16,8 @@ Rails.application.routes.draw do
       get :draft
       get :public
     end
+
+    resources :comments, only: [:create]
   end
 
  

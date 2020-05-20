@@ -6,8 +6,11 @@ class Event < ApplicationRecord
   
   # Relationships
   belongs_to :user
+
   has_many :participates, dependent: :destroy
   has_many :participated_users, through: :participates, source: :user
+
+  has_many :comments
 
   # AASM
   aasm(column: 'status', no_direct_assignment: true) do
