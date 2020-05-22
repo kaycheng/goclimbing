@@ -1,50 +1,52 @@
-<h2>修改個人資料</h2>
+<div class="col-lg-8 offset-lg-2 col-md-8 offset-md-2 col-sm-10 offset-sm-1">
+  <h2>Edit Profile</h2>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+    <%= render "devise/shared/error_messages", resource: resource %>
 
-  <div class="field">
-    <%= f.label :username, "使用者名稱" %><br />
-    <%= f.text_field :username, autofocus: true %>
-  </div>
+    <div class="form-group">
+      <%= f.label :username, "Username" %><br />
+      <%= f.text_field :username, autofocus: true, class: "form-control" %>
+    </div>
 
-  <div class="field">
-    <%= avatar(current_user, 100) %>
-    <%= f.label :avatar, "大頭貼" %><br />
-    <%= f.file_field :avatar %>
-  </div>
+    <div class="form-group">
+      <%= avatar(current_user, 100) %>
+      <%= f.label :avatar, "Avatar" %><br />
+      <%= f.file_field :avatar %>
+    </div>
 
-  <div class="field">
-    <%= f.label :intro, "自我簡介" %><br />
-    <%= f.text_area :intro, rows: "6" %>
-  </div>
+    <div class="form-group">
+      <%= f.label :intro, "Self Intro" %><br />
+      <%= f.text_area :intro, rows: "6", class: "form-control" %>
+    </div>
 
-  <div class="field">
-    <%= f.label :email, "Email" %><br />
-    <%= f.email_field :email, autocomplete: "email" %>
-  </div>
+    <div class="form-group">
+      <%= f.label :email, "Email" %><br />
+      <%= f.email_field :email, autocomplete: "email", class: "form-control" %>
+    </div>
 
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :password, "密碼" %> <i>(假如你不想更改，則可不用填寫)</i><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-    <% if @minimum_password_length %>
-      <br />
-      <em>最少<%= @minimum_password_length %>個字母或數字</em>
+    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+      <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
     <% end %>
-  </div>
 
-  <div class="field">
-    <%= f.label :password_confirmation, "確認密碼" %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
+    <div class="form-group">
+      <%= f.label :password, "Password" %> <i>(Importing new password, if you want to change it.)</i><br />
+      <%= f.password_field :password, autocomplete: "new-password", class: "form-control" %>
+      <% if @minimum_password_length %>
+        <br />
+        <em>At less<%= @minimum_password_length %> letters or numbers</em>
+      <% end %>
+    </div>
 
-  <div class="actions">
-    <%= f.submit "確定送出" %>
-  </div>
-<% end %>
+    <div class="form-group">
+      <%= f.label :password_confirmation, "Confirm Password" %><br />
+      <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %>
+    </div>
 
-<%= link_to "回到上一頁", :back %>
+    <div class="actions">
+      <%= f.submit "Submit", class: "btn btn-success" %>
+      <%= link_to "Back", :back %>
+    </div>
+  <% end %>
+  
+</div>

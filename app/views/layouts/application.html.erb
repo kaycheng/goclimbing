@@ -19,7 +19,9 @@
     
     <%= render "shared/flash" if notice %>
     <div class="container-fluid">
-      <%= yield %>
+      <div class="col-10 offset-1">
+        <%= yield %>
+      </div>
     </div>
   </body>
 </html>
