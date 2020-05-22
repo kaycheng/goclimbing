@@ -48,7 +48,7 @@ class EventsController < ApplicationController
 
   def show
     @comment = @event.comments.new
-    @comments = @event.comments.order(created_at: :desc)
+    @comments = @event.comments.order(created_at: :desc).includes(:user)
   end
 
   def destroy

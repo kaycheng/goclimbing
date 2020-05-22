@@ -1,0 +1,13 @@
+datetime:
+    distance_in_words:
+      less_than_x_seconds: '不久前'
+      half_a_minute: '不久前'
+      less_than_x_minutes: '不久前'
+      x_minutes: '%{count}分鐘前'
+      abount_x_hours: '%{count}小時前'
+      x_days: '%{count}天前'
+      abount_x_mouths: '%{count}月前'
+      x_mouths: '%{count}月前'
+      abount_x_years: '%{count}年前'
+      over_x_years: '%{count}年前'
+      almost_x_years: '%{count}年前'

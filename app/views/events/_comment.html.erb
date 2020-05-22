@@ -1,8 +1,24 @@
-<article class="comment">
-  <span class="profile avatar-50">
-    <%= link_to user_page_path(comment.user.username) do %>
-      <%= avatar(current_user, 50) %>
-    <% end %>
-    <%= simple_format(comment.content) %>
-  </span>
-</article>
+<div class="card">
+  <div class="card-body">
+    <article class="comment">
+      <span class="profile avatar-50">
+        <div class="float-left">
+          <%= link_to user_page_path(comment.user.username) do %>
+            <%= avatar(comment.user, 50) %>
+          <% end %>
+        </div>
+      </span>
+      <p class="float-left card-text">
+        <%= simple_format(comment.content) %>
+      </p>
+      <i class="float-left card-text text-muted">
+        <% if Time.now - comment.created_at > 1.day %>
+          <%= comment.created_at.strftime('%F') %>
+        <% else %>
+          <%= time_ago_in_words(comment.created_at) %>
+        <% end %>
+      </i>
+      <div class="clearfix"></div>
+    </article>
+  </div>
+</div>
