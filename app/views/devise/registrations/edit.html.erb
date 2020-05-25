@@ -5,23 +5,23 @@
     <%= render "devise/shared/error_messages", resource: resource %>
 
     <div class="form-group">
-      <%= f.label :username, "Username" %><br />
+      <%= f.label :username, "Username", class: "label-text" %><br />
       <%= f.text_field :username, autofocus: true, class: "form-control" %>
     </div>
 
     <div class="form-group">
       <%= avatar(current_user, 100) %>
-      <%= f.label :avatar, "Avatar" %><br />
+      <%= f.label :avatar, "Avatar", class: "label-text" %><br />
       <%= f.file_field :avatar %>
     </div>
 
     <div class="form-group">
-      <%= f.label :intro, "Self Intro" %><br />
+      <%= f.label :intro, "Self Intro", class: "label-text" %><br />
       <%= f.text_area :intro, rows: "6", class: "form-control" %>
     </div>
 
     <div class="form-group">
-      <%= f.label :email, "Email" %><br />
+      <%= f.label :email, "Email", class: "label-text" %><br />
       <%= f.email_field :email, autocomplete: "email", class: "form-control" %>
     </div>
 
@@ -30,7 +30,7 @@
     <% end %>
 
     <div class="form-group">
-      <%= f.label :password, "Password" %> <i>(Importing new password, if you want to change it.)</i><br />
+      <%= f.label :password, "Password", class: "label-text" %> <i>(Importing new password, if you want to change it.)</i><br />
       <%= f.password_field :password, autocomplete: "new-password", class: "form-control" %>
       <% if @minimum_password_length %>
         <br />
@@ -39,7 +39,7 @@
     </div>
 
     <div class="form-group">
-      <%= f.label :password_confirmation, "Confirm Password" %><br />
+      <%= f.label :password_confirmation, "Confirm Password", class: "label-text" %><br />
       <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %>
     </div>
 

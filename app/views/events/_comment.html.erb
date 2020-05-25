@@ -13,9 +13,9 @@
       </p>
       <i class="float-left card-text text-muted">
         <% if Time.now - comment.created_at > 1.day %>
-          <%= comment.created_at.strftime('%F') %>
+          <small><%= comment.created_at.strftime('%F') %></small>
         <% else %>
-          <%= time_ago_in_words(comment.created_at) %>
+          <small><%= time_ago_in_words(comment.created_at) %></small>
         <% end %>
       </i>
       <div class="clearfix"></div>
