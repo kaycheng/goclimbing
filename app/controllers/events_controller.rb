@@ -14,18 +14,18 @@ class EventsController < ApplicationController
 
     if @event.save
       if params[:publish]
-        redirect_to user_page_path(current_user.username), notice: "已建立新團"
+        redirect_to public_events_path, notice: "Created new events."
       else
-        redirect_to edit_event_path(@event), notice: "已儲存"
+        redirect_to draft_events_path, notice: "Saved the events."
       end
     else
-      render new_event_path, notice: "請重新建立"
+      render new_event_path, notice: "Please create again."
     end
   end
 
   def edit
     unless current_user == @event.user
-      redirect_to root_path, notice: "你沒有權限更改！"
+      redirect_to root_path, notice: "You don't allow do it！"
     end
   end
   
@@ -34,15 +34,15 @@ class EventsController < ApplicationController
       case
       when params[:publish]
         @event.publish!
-        redirect_to user_page_path(current_user.username), notice: "已發布"
+        redirect_to public_events_path, notice: "Publish."
       when params[:unpublish]
         @event.unpublish!
-        redirect_to user_page_path(current_user.username), notice: "已下架"
+        redirect_to draft_events_path, notice: "Unpublish."
       else
-        redirect_to user_page_path(current_user.username), notice: "已儲存"
+        redirect_to draft_events_path, notice: "Saved the event."
       end
     else
-      render edit_event_path(@event), notice: "請重新編輯"
+      render edit_event_path(@event), notice: "Please edit again."
     end
   end
 
@@ -53,7 +53,7 @@ class EventsController < ApplicationController
 
   def destroy
     if @event.destroy
-      redirect_to user_page_path(current_user.username), notice: "已刪除"
+      redirect_back(fallback_location: root_path)
     end
   end
 
@@ -69,11 +69,11 @@ class EventsController < ApplicationController
   end
 
   def draft
-    @draft_events = Event.where(status: "draft", user: current_user)
+    @draft_events = Event.where(status: "draft", user: current_user).order(created_at: :desc)
   end
 
   def public 
-    @public_events = Event.where(status: "published", user: current_user)
+    @public_events = Event.where(status: "published", user: current_user).order(created_at: :desc)
   end
 
 

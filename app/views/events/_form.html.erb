@@ -1,23 +1,43 @@
-<%= form_with model: event do |f| %>
-  <%= f.label :title, "標題" %>
-  <%= f.text_field :title %>
+<div class="row justify-content-md-center">
+  <div class="col-lg-8 col-md-10 col-sm-12 align-self-center">
+    
+    <%= form_with model: event do |f| %>
+      <div class="form-group">
+        <%= f.label :title, "Title", class: "label-text" %>
+        <%= f.text_field :title, class: "form-control" %>
+      </div>
+    
+      <div class="form-group">
+        <%= f.label :date, "Date", class: "label-text" %>
+        <%= f.text_field :date, class: "form-control" %>
+      </div>
+    
+      <div class="form-group">
+        <%= f.label :location, "Location", class: "label-text" %>
+        <%= f.text_field :location, class: "form-control" %>
+      </div>
+    
+      <div class="form-group">
+        <%= f.label :gather_location, "Meeting Point", class: "label-text" %>
+        <%= f.text_field :gather_location, class: "form-control" %>
+      </div>
+      
+      <div class="form-group">
+        <%= f.label :note, "Reminder", class: "label-text" %>
+        <%= f.text_area :note, class: "form-control" %>
+      </div>
+    
+      <div class="form-group">
+        <%= f.label :content, "Content", class: "label-text" %>
+        <%= f.text_area :content, rows: "10", class: "form-control" %>
+      </div>
+      
+      <div class="action">
+        <%= f.submit :Draft, name: "save_as_draft", class: "btn btn-info btn-text" %>
+        <%= f.submit :Publish, name: "publish", class: "btn btn-success btn-text" if event.may_publish? %>
+        <%= f.submit :Unpublish, name: "unpublish", class: "btn btn-danger btn-text" if event.may_unpublish? %>
+      </div>
+    <% end %>
 
-  <%= f.label :date, "日期" %>
-  <%= f.text_field :date %>
-
-  <%= f.label :location, "地點" %>
-  <%= f.text_field :location %>
-
-  <%= f.label :gather_location, "集合地點" %>
-  <%= f.text_field :gather_location %>
-
-  <%= f.label :note, "提醒事項" %>
-  <%= f.text_area :note %>
-
-  <%= f.label :content, "提案內容" %>
-  <%= f.text_area :content, rows: "10" %>
-
-  <%= f.submit :Draft, name: "save_as_draft", class: "btn btn-info" %>
-  <%= f.submit :Publish, name: "publish", class: "btn btn-success" if event.may_publish? %>
-  <%= f.submit :Unpublish, name: "unpublish", class: "btn btn-danger" if event.may_unpublish? %>
-<% end %>
+  </div>
+</div>

@@ -1,21 +1,39 @@
 <h2>
   Your Events
-  <span class="ml-auto">
+  <span class="float-right">
     <%= link_to "Create Event", new_event_path, class: "btn btn-secondary btn-large" %>
   </span>
 </h2>
-<hr>
 
-<%= link_to draft_events_path do %>
-  Draft <%= @draft_count %>
-<% end %>
-|
-<%= link_to public_events_path do %>
-  Public <%= @public_count %>
-<% end %>
 
-<% @public_events.each do |event| %>
-<p><%= event.title %></p>
-<p><%= event.user.username %></p>
-<p><%= event.status %></p>
-<% end %>
+<ul class="nav nav-tabs nav-margin">
+  <li class="nav-item">
+    <%= link_to draft_events_path, class: "text-dark text-decoration-none nav-link" do %>
+      Drafts <%= @draft_count %>
+    <% end %>
+  </li>
+  <li class="nav-item">
+    <%= link_to public_events_path, class: "text-dark text-decoration-none nav-link active" do %>
+      Published <%= @public_count %>
+    <% end %>
+  </li>
+</ul>
+
+<div class="event-content">
+  <% @public_events.each do |event| %>
+    <h3><%= link_to event.title, event_path(event), class: "text-dark text-decoration-none" %></h3>
+    <small class="text-muted">
+      <%= event.status %> from <%= event.created_at.strftime('%F') %>
+      <span class="btn-group">
+        <button class="btn btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true"
+          aria-expanded="false"></button>
+        <div class="dropdown-menu">
+          <%= link_to "Edit", edit_event_path(event), class: "dropdown-item" %>
+          <%= link_to "Delete", event_path(event), class: "dropdown-item", 
+                                method: :delete, data: { confirm: "Are you sure?" } %>
+        </div>
+      </span>
+    </small>
+    <hr>
+  <% end %>
+</div>
