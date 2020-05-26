@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <%= link_to "揪爬山", root_path, class: "navbar-brand" %>
+  <%= link_to "GoClimbing", root_path, class: "navbar-brand" %>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -29,13 +29,13 @@
           <%= link_to "Profile", user_page_path(current_user.username), class: "dropdown-item" %>
           <%= link_to "Setting", edit_user_registration_path(current_user), class: "dropdown-item" %>
           <div class="dropdown-divider"></div>
-          <%= link_to "登出", destroy_user_session_path, method: :delete, 
-                data: { confirm: "確定登出？" }, class: "dropdown-item" %>
+          <%= link_to "Log Out", destroy_user_session_path, method: :delete, 
+                data: { confirm: "Are you sure?" }, class: "dropdown-item" %>
         </div>
       </li>
       <% else %>
-        <%= link_to "註冊", new_user_registration_path, class: "nav-link" %>
-        <%= link_to "登入", new_user_session_path, class: "nav-link" %>
+        <%= link_to "Sing Up", new_user_registration_path, class: "nav-link" %>
+        <%= link_to "Log In", new_user_session_path, class: "nav-link" %>
       <% end %>
     </ul>
 

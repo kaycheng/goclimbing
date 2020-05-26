@@ -1,9 +1,9 @@
 <% if user_signed_in? && current_user != event.user %>
   <% if event.is_participated?(current_user) %>
-    <%= link_to "不參加", unparticipated_event_path(event), method: :post,
-                        class: "btn btn-primary" %>
+    <%= link_to "Unparticipated", unparticipated_event_path(event), method: :post,
+                        class: "btn btn-outline-info" %>
   <% else %>
-    <%= link_to "參加", participated_event_path(event), method: :post,
+    <%= link_to "Participate", participated_event_path(event), method: :post,
                       class: "btn btn-info" %>
   <% end %>
 <% end %>
