@@ -6,6 +6,11 @@
         <%= f.label :title, "Title", class: "label-text" %>
         <%= f.text_field :title, class: "form-control" %>
       </div>
+
+      <div class="form-group">
+        <%= f.label :images, "Images", class: "label-text" %>
+        <%= f.file_field :images, multiple: true %>
+      </div>
     
       <div class="form-group">
         <%= f.label :date, "Date", class: "label-text" %>

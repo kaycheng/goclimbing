@@ -12,6 +12,8 @@ class Event < ApplicationRecord
 
   has_many :comments
 
+  has_many_attached :images
+
   # AASM
   aasm(column: 'status', no_direct_assignment: true) do
     state :draft, initial: true

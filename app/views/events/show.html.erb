@@ -1,21 +1,27 @@
-<h2>
-  <%= @event.title %>
-  <%= render partial: "shared/participate", locals: { event: @event } %>
-</h2>
-<p>開團者：<%= link_to @event.user.username, user_page_path(@event.user.username) %></p>
-<p>日期：<%= @event.date %></p>
-<p>目標山：<%= @event.location %></p>
-<p>集合地點：<%= @event.gather_location %></p>
-<p>內容：<%= @event.content %></p>
-<p>提醒事項：<%= @event.note %></p>
-<p>Participates：<%= @event.participates.size %></p>
-
-
-<% if user_signed_in? && current_user == @event.user %>
-  <%= link_to "修改", edit_event_path(@event) %> |
-  <%= link_to "刪除", event_path(@event), method: :delete,
-      data: { confirm: "確定刪除？" } %>
-<% end %>
+<div class="row justify-content-center">
+  <div class="col-lg-12 col-md-12 col-sm-12">
+    <div class="row">
+      <%= image_tag @event.images.first, class: "d-block w-100" if @event.images.attached? %>
+    </div>
+  </div>
+    
+  <div class="col-lg-8 col-md-10 col-sm-12">
+    <h2>
+      <%= @event.title %>
+      <span class="float-right">
+        <%= render partial: "shared/participate", locals: { event: @event } %>
+      </span>
+    </h2>
+    <h3><%= link_to @event.user.username, user_page_path(@event.user.username),
+                                          class: "text-dark text-decoration-none" %></h3>
+    <p><b>Date：</b><%= @event.date %></p>
+    <p><b>Participates：</b><%= @event.participates.size %></p>
+    <p><b>Mountain Name：</b><%= @event.location %></p>
+    <p><b>Meeting Point：</b><%= @event.gather_location %></p>
+    <p><b>Reminder：</b><%= simple_format(@event.note) %></p>
+    <p><b>Content：</b><%= simple_format(@event.content) %></p>
+  </div>
+</div>
 
 <hr>
 
@@ -23,7 +29,7 @@
 <div class="row justify-content-md-center">
   <div class="col-lg-6 col-md-8 col-sm-12">
     <section class="comments">
-      <h2>Comment</h2>
+      <h4>Comment</h4>
       <%= render "comment_area", event: @event, comment: @comment %>
       <section class="comment-list">
         <%= render partial: "comment", collection: @comments %>
