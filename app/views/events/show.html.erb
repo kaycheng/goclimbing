@@ -5,7 +5,7 @@
     </div>
   </div>
     
-  <div class="col-lg-8 col-md-10 col-sm-12">
+  <div class="col-lg-10 col-md-10 col-sm-12">
     <h2>
       <%= @event.title %>
       <span class="float-right">
@@ -19,7 +19,7 @@
     <p><b>Mountain Name：</b><%= @event.location %></p>
     <p><b>Meeting Point：</b><%= @event.gather_location %></p>
     <p><b>Reminder：</b><%= simple_format(@event.note) %></p>
-    <p><b>Content：</b><%= simple_format(@event.content) %></p>
+    <p><b>Content：</b><%= simple_format(@event.content, class: "text-break") %></p>
   </div>
 </div>
 

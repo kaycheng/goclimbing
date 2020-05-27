@@ -80,7 +80,7 @@ class EventsController < ApplicationController
   private
 
   def event_params
-    params.require(:event).permit(:title, :content, :note, :date, :location, :gather_location, image: [])
+    params.require(:event).permit(:title, :content, :note, :date, :location, :gather_location, images: [])
   end
 
   def find_event
