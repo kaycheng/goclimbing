@@ -1,0 +1,23 @@
+<% content_for :navbar do %>
+  <%= render "shared/root_navbar" %>
+<% end %>
+
+<div class="row justify-content-center">
+  <% @events.each do |event| %>
+    <%= link_to event_path(event), class: "text-dark text-decoration-none" do %>
+      <div class="col-lg-4 col-md-6 col-sm-12">
+        <div class="card" style="width: 18rem;">
+          <%= image_tag event.images.first, class: "card-img-top img-responsive center-block" if event.images.attached? %>
+          <div class="card-body">
+            <h5 class="card-title">
+              <%= event.title %>
+              <small class="text-muted text-date"><i><%= event.date %></i></small>
+            </h5>
+            <p class="card-text"><%= truncate(event.content, length: 200) %></p>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+  <div class="clearfix"></div>
+</div>

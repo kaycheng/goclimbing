@@ -1,9 +1,16 @@
 class EventsController < ApplicationController
-  before_action :authenticate_user!
-  before_action :find_event, except: [:new, :create, :draft, :public]
+  before_action :authenticate_user!, except: :index
+  before_action :find_event, except: [:index, :new, :create, :draft, :public]
   before_action :count_events, only: [:draft, :public]
 
-  
+  def index
+    if params[:search]
+      @events = Event.published.not_overdue.where('title LIKE ? OR location LIKE ?', "%#{params[:search]}%", "%#{params[:search]}%").includes(:user)
+    else
+      @events = Event.published.not_overdue.order(created_at: :desc).includes(:user)
+    end
+  end
+
   def new
     @event = current_user.events.new
   end

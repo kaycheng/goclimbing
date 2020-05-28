@@ -5,6 +5,10 @@
 @import "./event.scss";
 @import "./welcome.scss";
 
+* {
+  box-sizing: border-box;
+}
+
 // Avatar
 .avatar-35 {
   border-radius: 50%;
