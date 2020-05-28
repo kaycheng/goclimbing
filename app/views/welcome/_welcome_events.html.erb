@@ -1,0 +1,6 @@
+<% events.each do |event| %>
+  <%= link_to event_path(event), class: "text-dark text-decoration-none" do %>
+    <b><%= event.title %></b>
+    <small class="text-muted"><%= event.date %></small><br/>
+  <% end %>
+<% end %>

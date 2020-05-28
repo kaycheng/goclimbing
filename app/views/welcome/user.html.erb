@@ -1,7 +1,7 @@
-<!-- 個人資料 -->
+<!-- User Profile -->
 <div class="user-content">
   <div class="row justify-content-md-center">
-    <div class="col-lg-6 col-md-6 col-sm-10">
+    <div class="col-lg-8 col-md-10 col-sm-12">
       <%= avatar(@user, 150) %>
       <h2 class="profile" data-controller="user">
         <%= @user.username %>
@@ -22,7 +22,7 @@
     <div class="clearfix"></div>
   </div>
   <div class="row justify-content-md-center">
-    <div class="col-lg-6 col-md-6 col-sm-10">
+    <div class="col-lg-10 col-md-10 col-sm-12">
       <hr>
     </div>
   </div>  
@@ -33,51 +33,48 @@
   <div class="row justify-content-md-center">
     <% if user_signed_in? && current_user == @user %>
       <div class="col-lg-10 col-md-10 col-sm-12">
-        <!-- 自己開的團 -->
+        <!-- Event by owner -->
         <div class="row">
           <div class="col-lg-8 col-md-8 col-sm-12">
             <% @events.each do |event| %>
-              <%= link_to event_path(event) do %>
-                <%= event.user.username %>
-                <%= event.title %>
-                <%= event.date %>
-                <%= event.location %>
-                <%= event.gather_location %>
-                <%= simple_format(event.content).truncate(150) %>
-                <%= event.note %>
+              <%= link_to event_path(event), class: "text-dark text-decoration-none" do %>
+                <div class="card">
+                  <div class="card-body">
+                    <h4>
+                      <%= event.title %>
+                      <small class="text-muted"><%= event.date %></small>
+                    </h4>
+                    <p><%= truncate((event.content), length: 100) %></p>
+                  </div>
+                </div>
               <% end %>
             <% end %>
           </div>
           <hr>
           <div class="col-lg-4 col-md-4 col-sm-12">
-            <!-- 參加的團 -->
+            <!-- Events which owner participeted -->
             <div class="col-12">
-              <% @participated_events.each do |event| %>
-                <%= event.title %>
-              <% end %>
+              <%= render "welcome_events", events: @participated_events %>
             </div>
             <hr>
-            <!-- 已參加過的團 -->
+            <!-- Events which owner participated, but overdue -->
             <div class="col-12">
-              <% @overdue_participated_events.each do |event| %>
-                <%= event.title %>
-              <% end %>
+              <%= render "welcome_events", events: @overdue_participated_events %>
             </div>
           </div>
         </div>
       </div>
     <% else %>
-      <div class="col-lg-10 col-md-10 col-sm-12">
+      <div class="col-lg-8 col-md-8 col-sm-12">
         <% @events.each do |event| %>
-          <%= link_to event_path(event) do %>
-            <%= event.user.username %>
-            <%= event.title %>
-            <%= event.date %>
-            <%= event.location %>
-            <%= event.gather_location %>
-            <%= simple_format(event.content).truncate(150) %>
-            <%= event.note %>
+          <%= link_to event_path(event), class: "text-dark text-decoration-none" do %>
+            <h4>
+              <%= event.title %>
+              <small class="text-muted"><%= event.date %></small>
+            </h4>
+            <p><%= truncate((event.content), length: 100) %></p>
           <% end %>
+          <hr>
         <% end %>
       </div>
     <% end %>

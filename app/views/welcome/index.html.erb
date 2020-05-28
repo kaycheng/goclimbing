@@ -1,34 +1,46 @@
 <% content_for :navbar do %>
   <%= render 'shared/root_navbar' %>
 <% end %>
-<h1>Hi</h1>
 
-<!-- 所有的events -->
-<% @newest_events.each do |event| %>
-  <div class="newest_content">
-    <%= link_to event_path(event) do %>
-      <%= event.user.username %>
-      <%= event.title %>
-      <%= event.date %>
-      <%= event.location %>
-      <%= event.gather_location %>
-      <%= simple_format(event.content).truncate(150) %>
-      <%= event.note %>
-      Participates：<%= event.participates.size %>
-    <% end %>
-    
-    <%= render partial: "shared/participate", locals: { event: event } %>
+<!-- All of the Events -->
+<div class="row justify-content-center">
+  <div class="row">
+    <div class="col-lg-8 col-md-8 col-sm-12">
+      <h4 class="text-muted text-tag">Newest Events</h4>
+      <% @newest_events.each do |event| %>
+        <div class="newest_content">
+          <%= link_to event_path(event), class: "text-dark text-decoration-none" do %>
+            <h1><%= event.title %></h1>
+            <span><%= image_tag event.images.first.variant(resize_to_limit: [150, 100]), class: "float-right index-image" if event.images.attached? %></span>
+            <%= event.location %>
+            <%= event.date %>
+            <p class="text-break"><%= truncate(event.content, length: 150) %></p>
+            Participates <b><%= event.participates.size %></b>
+          <% end %>
+          <%= render partial: "shared/participate", locals: { event: event } %>
+        </div>
+        <hr>
+      <% end %>
+      <%= link_to "See More...", "#", class: "float-right text-dark text-decoration-none" %>
+    </div>
+  
+    <div class="col-lg-4 col-md-4 col-sm-12">
+      <!-- Most of Searching -->
+      
+      <!-- Participated Top -->
+      <h6 class="text-muted text-tag text-center">Popular for People</h6>
+      <hr>
+      <% @papular_events.each_with_index do |event, index| %>
+        <div class="papular-content">
+          <span class="text-muted text-number"><%= index + 1 %></span>
+          <%= link_to event_path(event), class: "text-dark text-decoration-none" do %>
+            <span class="popular-text"><%= event.title %></span>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  
   </div>
-<% end %>
+</div>
 
-<!-- 景點排名 -->
 
-<!-- 最多人參加 -->
-<% @papular_events.each do |event| %>
-  <div class="papular-content">
-    <%= link_to event_path(event) do %>
-      <%= event.title %>
-      <%= event.participates.size %>
-    <% end %>
-  </div>
-<% end %>
