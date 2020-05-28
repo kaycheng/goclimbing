@@ -20,6 +20,7 @@
     <p><b>Meeting Point：</b><%= @event.gather_location %></p>
     <p><b>Reminder：</b><%= simple_format(@event.note) %></p>
     <p><b>Content：</b><%= simple_format(@event.content, class: "text-break") %></p>
+    <%= link_to "Back", :back, class: "btn btn-secondary" %>
   </div>
 </div>
 
