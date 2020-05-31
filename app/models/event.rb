@@ -10,7 +10,7 @@ class Event < ApplicationRecord
   has_many :participates, dependent: :destroy
   has_many :participated_users, through: :participates, source: :user
 
-  has_many :comments
+  has_many :comments, dependent: :destroy
 
   has_many_attached :images
 

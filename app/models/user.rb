@@ -21,7 +21,7 @@ class User < ApplicationRecord
   has_many :participates, dependent: :destroy
   has_many :participated_events, through: :participates, source: :event
 
-  has_many :comments
+  has_many :comments, dependent: :destroy
 
   # instance methods
   def follow?(user)
