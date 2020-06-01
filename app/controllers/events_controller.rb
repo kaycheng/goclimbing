@@ -7,7 +7,7 @@ class EventsController < ApplicationController
     if params[:search]
       @events = Event.published.not_overdue.where('title LIKE ? OR location LIKE ?', "%#{params[:search]}%", "%#{params[:search]}%").includes(:user)
     else
-      @events = Event.published.not_overdue.order(created_at: :desc).includes(:user)
+      @events = Event.published.not_overdue.order(created_at: :desc).includes(:user).page(params[:page]).per(15)
     end
   end
 
