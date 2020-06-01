@@ -31,6 +31,8 @@ gem 'devise', '~> 4.7', '>= 4.7.1'
 gem "rails-i18n"
 gem 'bootstrap4-datetime-picker-rails'
 gem 'aasm', '~> 5.0', '>= 5.0.8'
+gem 'faker', '~> 2.11'
+gem 'rest-client'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
