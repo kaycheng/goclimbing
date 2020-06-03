@@ -9,11 +9,25 @@
   box-sizing: border-box;
 }
 
+html {
+    min-height: 100%;
+    position: relative;
+}
+
 body {
   font-family: 'DM Mono', monospace;
   font-family: 'Noto Sans TC', sans-serif;
   font-family: 'Raleway', sans-serif;
   font-family: 'Tenali Ramakrishna', sans-serif;
+}
+
+// Footer
+footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 50px;
 }
 
 // Avatar
@@ -51,5 +65,5 @@ label.label-text {
 // Container
 .container-margin {
   margin-top: 20px;
-  margin-bottom: 40px;
+  margin-bottom: 50px;
 }
