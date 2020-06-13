@@ -1,0 +1,6 @@
+google_app_id: '630135954467-d1fqg2h554vs7f8ul9ce0bdvvki98eig.apps.googleusercontent.com'
+google_app_secret: 'Qag_qlh906AjhLanxSXMoAOh'
+
+# production:
+#   stripe_api_key: sk_live_EeHnL644i6zo4Iyq4v1KdV9H
+#   stripe_publishable_key: pk_live_9lcthxpSIHbGwmdO941O1XVU

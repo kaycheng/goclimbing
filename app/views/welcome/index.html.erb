@@ -21,7 +21,7 @@
         <hr>
       <% end %>
       
-      <% unless Event.count < 15 %>
+      <% unless @newest_events.count < 15 %>
         <%= link_to "See More...", events_path, class: "float-right text-dark text-decoration-none" %>
       <% end %>
     </div>
