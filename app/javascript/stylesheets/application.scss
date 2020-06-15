@@ -38,10 +38,12 @@ footer {
 }
 
 img.avatar-50 {
+  display: inline-block;
   border-radius: 50%;
   width: 50px;
   height: 50px;
   margin-right: 20px;
+  float: left;
 }
 
 .avatar-150 {
@@ -50,6 +52,23 @@ img.avatar-50 {
   height: 150px;
   display: inline-block;
   float: right;
+}
+
+.name-avatar {
+  display: inline-block;
+  font-size: 2em;
+  background-color: #808080;
+  color: #fff;
+  width: 100%;
+  height: auto;
+  border-radius: 50%;
+  text-align: center;
+}
+
+.avatar-space {
+  width: 50px;
+  height: 50px;
+  margin: 10px 20px;
 }
 
 // Form
@@ -67,3 +86,4 @@ label.label-text {
   margin-top: 20px;
   margin-bottom: 50px;
 }
+

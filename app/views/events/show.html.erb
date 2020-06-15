@@ -6,21 +6,39 @@
   </div>
     
   <div class="col-lg-10 col-md-10 col-sm-12">
-    <h2>
-      <%= @event.title %>
-      <span class="float-right">
-        <%= render partial: "shared/participate", locals: { event: @event } %>
-      </span>
-    </h2>
-    <h3><%= link_to @event.user.username, user_page_path(@event.user.username),
-                                          class: "text-dark text-decoration-none" %></h3>
-    <p><b>Date：</b><%= @event.date %></p>
-    <p><b>Participates：</b><%= @event.participates.size %></p>
-    <p><b>Mountain Name：</b><%= @event.location %></p>
-    <p><b>Meeting Point：</b><%= @event.gather_location %></p>
-    <p><b>Reminder：</b><%= simple_format(@event.note) %></p>
-    <p><b>Content：</b><%= simple_format(@event.content, class: "text-break") %></p>
-    <%= link_to "Back", :back, class: "btn btn-secondary" %>
+    <div class="row">
+      <!-- Event Contain -->
+      <div class="col-lg-8 col-md-8 col-sm-12">
+        <h2>
+          <%= @event.title %>
+          <span class="float-right">
+            <%= render partial: "shared/participate", locals: { event: @event } %>
+          </span>
+        </h2>
+        <h4><%= link_to @event.user.username, user_page_path(@event.user.username),
+                                              class: "text-dark text-decoration-none" %></h4>
+        <p><b>Date：</b><%= @event.date %></p>
+        <p><b>Participates：</b><%= @event.participates.size %></p>
+        <p><b>Mountain Name：</b><%= @event.location %></p>
+        <p><b>Meeting Point：</b><%= @event.gather_location %></p>
+        <p><b>Reminder：</b><%= simple_format(@event.note) %></p>
+        <p><b>Content：</b><%= simple_format(@event.content, class: "text-break") %></p>
+        <%= link_to "Back", :back, class: "btn btn-secondary" %>
+      </div>
+
+      <!-- Event participater -->
+      <div class="col-lg-4 col-md-4 col-sm-12 overflow-auto">
+        <h5 class=""><b>Participates：</b></h5>
+        <% @event.participates.each do |participate| %>
+          <div class="avatar-space">
+            <%= link_to user_page_path(participate.user.username), class: "text-dark text-decoration-none" do %>
+              <!-- <span class="name-participater"><%= participate.user.username %></span> -->
+              <span class="name-avatar"><%= avatar(participate.user, 50) %></span>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    </div>
   </div>
 </div>
 

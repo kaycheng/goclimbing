@@ -36,3 +36,8 @@
 @import '~bootstrap/scss/_tooltip.scss';
 @import '~bootstrap/scss/_transitions.scss';
 @import '~bootstrap/scss/_utilities.scss';
+
+.overflow-auto {
+  border-left: 2px solid grey;
+  overflow: auto;
+}
