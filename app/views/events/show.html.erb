@@ -30,10 +30,12 @@
       <div class="col-lg-4 col-md-4 col-sm-12 overflow-auto">
         <h5 class=""><b>Participates：</b></h5>
         <% @event.participates.each do |participate| %>
-          <div class="avatar-space">
+          <div>
             <%= link_to user_page_path(participate.user.username), class: "text-dark text-decoration-none" do %>
-              <!-- <span class="name-participater"><%= participate.user.username %></span> -->
-              <span class="name-avatar"><%= avatar(participate.user, 50) %></span>
+              <div class="avatar-space">
+                <span class="name-avatar"><%= avatar(participate.user, 50) %></span>
+              </div>
+              <span class="name-participater"><%= participate.user.username.split.first %></span>
             <% end %>
           </div>
         <% end %>
