@@ -39,6 +39,16 @@ class User < ApplicationRecord
     end
   end
 
+  enum role: {
+    user: 0,
+    admin: 1
+  }
+
+  def admin?
+    self.role == 'admin'
+  end
+
+  # Setting google_oauth2
   def self.find_for_google_oauth2(access_token, signed_in_resource=nil)
     data = access_token.info
     user = User.where(:provider => access_token.credentials.token, :uid => access_token.uid ).first    
@@ -64,7 +74,6 @@ class User < ApplicationRecord
     end
   end
 
-
   def self.new_with_session(params, session)
     super.tap do |user|
       if data = session["devise.google_data"] && session["devise.google_data"]["extra"]["raw_info"]
@@ -72,4 +81,5 @@ class User < ApplicationRecord
       end
     end
   end
+
 end

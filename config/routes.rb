@@ -29,6 +29,12 @@ Rails.application.routes.draw do
     end
   end
 
+  namespace :dashboard do 
+    get 'welcome', to: 'welcome#index'
+    resources :events, only: [:index, :destroy]
+    resources :users, only: [:index, :destroy]
+  end
+
   # /@username
   get '@:username', to: 'welcome#user', as: 'user_page'
   get '@:username/followers', to: 'welcome#followers', as: 'followers_user'

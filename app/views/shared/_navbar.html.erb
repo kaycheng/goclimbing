@@ -23,7 +23,10 @@
             <%= link_to "Profile", user_page_path(current_user.username), class: "dropdown-item" %>
             <%= link_to "Setting", edit_user_registration_path(current_user), class: "dropdown-item" %>
             <div class="dropdown-divider"></div>
-            <%= link_to "Log Out", destroy_user_session_path, method: :delete, 
+            <% if current_user.admin? %>
+              <%= link_to "Dashboard", dashboard_welcome_path, class: "dropdown-item" %>
+            <% end %>
+              <%= link_to "Log Out", destroy_user_session_path, method: :delete, 
                 data: { confirm: "Are you sure?" }, class: "dropdown-item" %>
           </div>
         </li>
