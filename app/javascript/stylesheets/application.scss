@@ -4,6 +4,7 @@
 @import '@fortawesome/fontawesome-free';
 @import "./event.scss";
 @import "./welcome.scss";
+@import "./dashboard.scss";
 
 * {
   box-sizing: border-box;
@@ -19,6 +20,10 @@ body {
   font-family: 'Noto Sans TC', sans-serif;
   font-family: 'Raleway', sans-serif;
   font-family: 'Tenali Ramakrishna', sans-serif;
+}
+
+ul {
+  list-style: none;
 }
 
 // Footer

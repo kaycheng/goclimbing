@@ -1,0 +1,36 @@
+<% content_for :navbar do %>
+  <%= render 'shared/dashboard_navbar' %>
+<% end %>
+
+<div class="row">
+  <div class="col-lg-3 col-md-3">
+    <div class="sidebar">
+      <ul>
+        <li><%= link_to "Events", dashboard_events_path, class: "text-decoration-none text-sidebar" %></li>
+        <li><%= link_to "Users", dashboard_users_path, class: "text-decoration-none text-sidebar text-active" %></li>
+      </ul>
+    </div>
+  </div>
+  <div class="col-lg-9 col-md-9">
+    <h1 class="text-center">DashBoard System</h1>
+    <h2>Users</h2>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th></th>
+        </tr>
+      </thead>
+    
+      <tbody>
+        <% @users.each do |user| %>
+        <tr>
+          <td><%= link_to user.username, user_page_path(user.username), class: "text-dark text-decoration-none" %></td>
+          <td><%= link_to "Delete", dashboard_user_path(user), method: :delete,
+                                    data: { confirm: "Are you sure?" }, class: "btn btn-sm btn-danger" %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
