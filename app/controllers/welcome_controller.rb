@@ -1,4 +1,5 @@
 class WelcomeController < ApplicationController
+  layout "search", only: :index
   before_action :find_user, except: :index
 
   def index
