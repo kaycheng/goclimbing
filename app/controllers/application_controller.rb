@@ -7,4 +7,10 @@ class ApplicationController < ActionController::Base
       status: :not_found,
       layout: false
   end
+
+  def authenticate_admin
+    unless current_user.admin?
+      redirect_to root_path, notice: "Not Allowed!"
+    end
+  end
 end

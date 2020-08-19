@@ -1,9 +1,9 @@
 <!-- User Profile -->
 <div class="user-content">
   <div class="row justify-content-md-center">
-    <div class="col-lg-8 col-md-10 col-sm-12">
+    <div class="col-lg-8 col-md-10 col-sm-12" data-controller="user">
       <%= avatar(@user, 150) %>
-      <h2 class="profile" data-controller="user">
+      <h2 class="profile">
         <%= @user.username %>
         <%= link_to "#", class: "btn btn-secondary follow-button",
                           data: { action: "user#follow",
@@ -15,8 +15,26 @@
       <p><%= simple_format(@user.intro) %></p>
       <p>
         Events <b><%= @user.events.count %></b>
-        Followers <b><%= link_to @user.followers.size, followers_user_path(@user.username), class: "text-dark text-decoration-none" %></b>
-        Followings <b><%= link_to @user.followings.size, followings_user_path(@user.username), class: "text-dark text-decoration-none" %></b>
+        
+        Followers 
+        <b>
+          <%= link_to "#", class: "text-dark text-decoration-none",
+                            data: { action: "user#follower",
+                                      user: @user.username,
+                                    target: "user.followerButton"} do %> 
+            <%= @user.followers.size %>
+          <% end %>
+        </b>
+        
+        Followings 
+        <b>
+          <%= link_to "#", class: "text-dark text-decoration-none",
+                                      data: { action: "user#following",
+                                                user: @user.username,
+                                              target: "user.followingButton"} do %>
+            <%= @user.followings.size %>
+          <% end %>
+        </b>
       </p>
     </div>
     <div class="clearfix"></div>

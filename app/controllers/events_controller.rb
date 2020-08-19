@@ -1,5 +1,5 @@
 class EventsController < ApplicationController
-  before_action :authenticate_user!, except: :index
+  before_action :authenticate_user!, except: [:index, :show]
   before_action :find_event, except: [:index, :new, :create, :draft, :public]
   before_action :count_events, only: [:draft, :public]
 
@@ -82,7 +82,6 @@ class EventsController < ApplicationController
   def public 
     @public_events = Event.where(status: "published", user: current_user).order(created_at: :desc)
   end
-
 
   private
 

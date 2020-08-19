@@ -2,7 +2,7 @@ import { Controller } from "stimulus"
 import axios from 'axios'
 
 export default class extends Controller {
-  static targets = [ "followButton" ]
+  static targets = ["followButton", "followerButton" ]
 
   follow(event) {
     event.preventDefault()
@@ -14,7 +14,7 @@ export default class extends Controller {
            let status = response.data.status
            switch(status){
              case 'Sign in first!!':
-               alert('你必須先登入！')
+               alert('You need to login first！')
                break
              default:
               button.innerHTML = status
@@ -24,4 +24,17 @@ export default class extends Controller {
            console.log(error)
          })
   }
+
+  follower(event) {
+    event.preventDefault()
+    let username = this.followerButtonTarget.dataset.user
+    let followButtonText = this.followButtonTarget.innerHTML
+    let numFollowers = this.followerButtonTarget.innerHTML
+
+    var num = (followButtonText == 'Followed') ? 'numFollowers - 1' : 'numFollowers + 1'
+  }
+
 }
+
+  
+
